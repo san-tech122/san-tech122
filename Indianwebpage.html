@@ -1,0 +1,922 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Incredible India: Culinary & Travel Guide</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #FF6B6B;
+            --secondary: #FFA502;
+            --accent: #2ED573;
+            --dark: #2F3542;
+            --light: #F1F2F6;
+            --gold: #FFD700;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: var(--dark);
+            background-color: #FFF9F0;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', serif;
+        }
+        
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+        
+        .tagline {
+            font-size: 1.2rem;
+            font-weight: 300;
+            margin-bottom: 1.5rem;
+        }
+        
+        nav {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+        
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 2rem;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+        
+        .hero {
+            background: url('https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
+            height: 500px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+            position: relative;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            padding: 0 20px;
+        }
+        
+        .hero h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--primary);
+            color: white;
+            padding: 0.8rem 1.8rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            background-color: var(--secondary);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        
+        .section {
+            padding: 5rem 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--dark);
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--primary);
+        }
+        
+        .food-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+        
+        .food-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .food-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+        
+        .food-img {
+            height: 250px;
+            overflow: hidden;
+        }
+        
+        .food-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .food-card:hover .food-img img {
+            transform: scale(1.1);
+        }
+        
+        .food-content {
+            padding: 1.5rem;
+        }
+        
+        .food-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--dark);
+        }
+        
+        .food-origin {
+            display: inline-block;
+            background-color: var(--light);
+            color: var(--dark);
+            padding: 0.3rem 0.8rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            margin-bottom: 1rem;
+        }
+        
+        .food-desc {
+            color: #666;
+            margin-bottom: 1.5rem;
+        }
+        
+        .read-more {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+        }
+        
+        .read-more svg {
+            margin-left: 5px;
+            transition: transform 0.3s;
+        }
+        
+        .read-more:hover svg {
+            transform: translateX(5px);
+        }
+        
+        .grandma-section {
+            background: linear-gradient(135deg, #FFF9F0, #FFE8D6);
+            padding: 5rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .grandma-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://images.unsplash.com/photo-1580894732444-8ecded7900cd?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') center/cover no-repeat;
+            opacity: 0.1;
+            z-index: 0;
+        }
+        
+        .grandma-content {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+        }
+        
+        .grandma-img {
+            flex: 1;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        
+        .grandma-img img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        .grandma-text {
+            flex: 1;
+        }
+        
+        .grandma-text h2 {
+            font-size: 2.5rem;
+            color: var(--dark);
+            margin-bottom: 1.5rem;
+        }
+        
+        .grandma-text h2 span {
+            color: var(--primary);
+        }
+        
+        .grandma-text p {
+            margin-bottom: 1.5rem;
+            color: #555;
+        }
+        
+        .places-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .place-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+        }
+        
+        .place-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+        }
+        
+        .place-img {
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .place-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .place-card:hover .place-img img {
+            transform: scale(1.1);
+        }
+        
+        .place-content {
+            padding: 1.5rem;
+        }
+        
+        .place-content h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .place-location {
+            display: flex;
+            align-items: center;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+        
+        .place-location svg {
+            margin-right: 5px;
+        }
+        
+        .hotel-info {
+            background-color: var(--light);
+            padding: 1rem;
+            border-radius: 8px;
+            margin-top: 1rem;
+        }
+        
+        .hotel-info h4 {
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+            color: var(--dark);
+        }
+        
+        .hotel-info p {
+            font-size: 0.9rem;
+            color: #666;
+        }
+        
+        .blog-section {
+            background-color: var(--light);
+            padding: 5rem 0;
+        }
+        
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+        
+        .blog-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+        }
+        
+        .blog-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+        
+        .blog-img {
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .blog-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .blog-card:hover .blog-img img {
+            transform: scale(1.1);
+        }
+        
+        .blog-content {
+            padding: 1.5rem;
+        }
+        
+        .blog-date {
+            font-size: 0.8rem;
+            color: #888;
+            margin-bottom: 0.5rem;
+        }
+        
+        .blog-content h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .blog-excerpt {
+            color: #666;
+            margin-bottom: 1.5rem;
+        }
+        
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 3rem 0 1rem;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .footer-column h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background-color: var(--primary);
+        }
+        
+        .footer-column p {
+            margin-bottom: 1rem;
+            color: #ddd;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+        
+        .footer-links a {
+            color: #ddd;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: var(--primary);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            color: white;
+            transition: all 0.3s;
+        }
+        
+        .social-links a:hover {
+            background-color: var(--primary);
+            transform: translateY(-3px);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+            }
+            
+            .nav-links {
+                margin-top: 1rem;
+            }
+            
+            .nav-links li {
+                margin-left: 1rem;
+                margin-right: 1rem;
+            }
+            
+            .grandma-content {
+                flex-direction: column;
+            }
+            
+            .hero h2 {
+                font-size: 2rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Incredible India</h1>
+            <p class="tagline">A Culinary & Cultural Journey Through India's Heartland</p>
+            <a href="#cuisine" class="btn">Explore Cuisines</a>
+            <a href="#travel" class="btn" style="background-color: var(--accent); margin-left: 1rem;">Discover Places</a>
+        </div>
+    </header>
+    
+    <nav>
+        <div class="container nav-container">
+            <div class="logo">Indian Delights</div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#cuisine">Cuisines</a></li>
+                <li><a href="#recipes">Recipes</a></li>
+                <li><a href="#travel">Travel</a></li>
+                <li><a href="#blog">Blog</a></li>
+                <li><a href="#about">About</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+    <section class="hero">
+        <div class="hero-content">
+            <h2>Discover India's Rich Culinary Heritage</h2>
+            <p>From the spicy curries of the South to the aromatic biryanis of the North, explore India's diverse flavors that have been perfected over centuries.</p>
+            <a href="#cuisine" class="btn">Begin Your Journey</a>
+        </div>
+    </section>
+    
+    <section id="cuisine" class="section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Famous Indian Cuisines</h2>
+            </div>
+            
+            <div class="food-grid">
+                <!-- Food Card 1 -->
+                <div class="food-card">
+                    <div class="food-img">
+                        <img src="https://images.unsplash.com/photo-1589301760014-d929f3979dbc?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Butter Chicken">
+                    </div>
+                    <div class="food-content">
+                        <h3>Butter Chicken</h3>
+                        <span class="food-origin">Punjab, North India</span>
+                        <p class="food-desc">Creamy tomato-based curry with tender chicken pieces, flavored with aromatic spices and finished with butter and cream.</p>
+                        <a href="#" class="read-more">View Recipe 
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M8 0L6.59 1.41L12.17 7H0V9H12.17L6.59 14.59L8 16L16 8L8 0Z" fill="#FF6B6B"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Food Card 2 -->
+                <div class="food-card">
+                    <div class="food-img">
+                        <img src="https://images.unsplash.com/photo-1630916272367-d4b0f8b1f1e8?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Masala Dosa">
+                    </div>
+                    <div class="food-content">
+                        <h3>Masala Dosa</h3>
+                        <span class="food-origin">Karnataka, South India</span>
+                        <p class="food-desc">Crispy fermented rice crepe filled with spiced potato mixture, served with coconut chutney and sambar.</p>
+                        <a href="#" class="read-more">View Recipe 
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M8 0L6.59 1.41L12.17 7H0V9H12.17L6.59 14.59L8 16L16 8L8 0Z" fill="#FF6B6B"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Food Card 3 -->
+                <div class="food-card">
+                    <div class="food-img">
+                        <img src="https://images.unsplash.com/photo-1601050690597-df0568f70950?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Rogan Josh">
+                    </div>
+                    <div class="food-content">
+                        <h3>Rogan Josh</h3>
+                        <span class="food-origin">Kashmir, North India</span>
+                        <p class="food-desc">Aromatic lamb curry with deep red color from Kashmiri chilies, flavored with fennel, ginger and garam masala.</p>
+                        <a href="#" class="read-more">View Recipe 
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M8 0L6.59 1.41L12.17 7H0V9H12.17L6.59 14.59L8 16L16 8L8 0Z" fill="#FF6B6B"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Food Card 4 -->
+                <div class="food-card">
+                    <div class="food-img">
+                        <img src="https://images.unsplash.com/photo-1603133872878-684f208fb84b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Dhokla">
+                    </div>
+                    <div class="food-content">
+                        <h3>Dhokla</h3>
+                        <span class="food-origin">Gujarat, West India</span>
+                        <p class="food-desc">Steamed savory cake made from fermented rice and chickpea batter, light and fluffy with a tangy flavor.</p>
+                        <a href="#" class="read-more">View Recipe 
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M8 0L6.59 1.41L12.17 7H0V9H12.17L6.59 14.59L8 16L16 8L8 0Z" fill="#FF6B6B"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Food Card 5 -->
+                <div class="food-card">
+                    <div class="food-img">
+                        <img src="https://images.unsplash.com/photo-1633945274309-2c16c9682a8c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Hyderabadi Biryani">
+                    </div>
+                    <div class="food-content">
+                        <h3>Hyderabadi Biryani</h3>
+                        <span class="food-origin">Telangana, South India</span>
+                        <p class="food-desc">Fragrant rice dish layered with marinated meat and cooked on dum (slow steam) with saffron and fried onions.</p>
+                        <a href="#" class="read-more">View Recipe 
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M8 0L6.59 1.41L12.17 7H0V9H12.17L6.59 14.59L8 16L16 8L8 0Z" fill="#FF6B6B"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Food Card 6 -->
+                <div class="food-card">
+                    <div class="food-img">
+                        <img src="https://images.unsplash.com/photo-1601050690117-64b6d2f7f5e8?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Chole Bhature">
+                    </div>
+                    <div class="food-content">
+                        <h3>Chole Bhature</h3>
+                        <span class="food-origin">Punjab, North India</span>
+                        <p class="food-desc">Spicy chickpea curry served with puffed, deep-fried bread made from refined flour.</p>
+                        <a href="#" class="read-more">View Recipe 
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M8 0L6.59 1.41L12.17 7H0V9H12.17L6.59 14.59L8 16L16 8L8 0Z" fill="#FF6B6B"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="grandma-section">
+        <div class="container">
+            <div class="grandma-content">
+                <div class="grandma-img">
+                    <img src="https://images.unsplash.com/photo-1580894732444-8ecded7900cd?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Grandma's Kitchen">
+                </div>
+                <div class="grandma-text">
+                    <h2>Grandma's <span>Secret Recipes</span></h2>
+                    <p>"In our family, cooking is more than just preparing food - it's about preserving traditions, sharing stories, and creating memories that last generations."</p>
+                    <p>Our grandma's kitchen is where magic happens. The aromatic spices, the rhythmic sound of grinding, and the love poured into every dish make Indian cuisine truly special.</p>
+                    <p>Explore our collection of authentic family recipes passed down through generations, each with its own story and cultural significance.</p>
+                    <a href="#" class="btn">Explore Family Recipes</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="travel" class="section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Must-Visit Places in India</h2>
+            </div>
+            
+            <div class="places-grid">
+                <!-- Place Card 1 -->
+                <div class="place-card">
+                    <div class="place-img">
+                        <img src="https://images.unsplash.com/photo-1582972236019-ea9dfa7a45b1?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Jaipur">
+                    </div>
+                    <div class="place-content">
+                        <h3>Jaipur, Rajasthan</h3>
+                        <div class="place-location">
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M8 8.5C9.10457 8.5 10 7.60457 10 6.5C10 5.39543 9.10457 4.5 8 4.5C6.89543 4.5 6 5.39543 6 6.5C6 7.60457 6.89543 8.5 8 8.5Z" fill="#FF6B6B"/>
+                                <path d="M8 0C4.1 0 1 3.1 1 7C1 10.9 8 16 8 16C8 16 15 10.9 15 7C15 3.1 11.9 0 8 0ZM8 10.5C5.5 10.5 3.5 8.5 3.5 6C3.5 3.5 5.5 1.5 8 1.5C10.5 1.5 12.5 3.5 12.5 6C12.5 8.5 10.5 10.5 8 10.5Z" fill="#FF6B6B"/>
+                            </svg>
+                            <span>Pink City, Rajasthan</span>
+                        </div>
+                        <p>Known as the Pink City, Jaipur is famous for its stunning palaces, vibrant bazaars, and rich cultural heritage.</p>
+                        
+                        <div class="hotel-info">
+                            <h4>Recommended Stay:</h4>
+                            <p><strong>Rambagh Palace</strong> - Former royal residence turned luxury hotel with exquisite Rajasthani architecture.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Place Card 2 -->
+                <div class="place-card">
+                    <div class="place-img">
+                        <img src="https://images.unsplash.com/photo-1524492412937-b28074a5d7da?ixlib=rb-1.2.1&auto=format&fit=crop&w=1351&q=80" alt="Kerala Backwaters">
+                    </div>
+                    <div class="place-content">
+                        <h3>Kerala Backwaters</h3>
+                        <div class="place-location">
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M8 8.5C9.10457 8.5 10 7.60457 10 6.5C10 5.39543 9.10457 4.5 8 4.5C6.89543 4.5 6 5.39543 6 6.5C6 7.60457 6.89543 8.5 8 8.5Z" fill="#FF6B6B"/>
+                                <path d="M8 0C4.1 0 1 3.1 1 7C1 10.9 8 16 8 16C8 16 15 10.9 15 7C15 3.1 11.9 0 8 0ZM8 10.5C5.5 10.5 3.5 8.5 3.5 6C3.5 3.5 5.5 1.5 8 1.5C10.5 1.5 12.5 3.5 12.5 6C12.5 8.5 10.5 10.5 8 10.5Z" fill="#FF6B6B"/>
+                            </svg>
+                            <span>Alleppey, Kerala</span>
+                        </div>
+                        <p>A network of tranquil canals, lakes and lagoons where you can experience Kerala's serene beauty on a houseboat.</p>
+                        
+                        <div class="hotel-info">
+                            <h4>Recommended Stay:</h4>
+                            <p><strong>Punnamada Resort</strong> - Luxury houseboats with traditional Keralite decor and authentic local cuisine.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Place Card 3 -->
+                <div class="place-card">
+                    <div class="place-img">
+                        <img src="https://images.unsplash.com/photo-1564507592333-c60657eea523?ixlib=rb-1.2.1&auto=format&fit=crop&w=1351&q=80" alt="Taj Mahal">
+                    </div>
+                    <div class="place-content">
+                        <h3>Taj Mahal, Agra</h3>
+                        <div class="place-location">
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M8 8.5C9.10457 8.5 10 7.60457 10 6.5C10 5.39543 9.10457 4.5 8 4.5C6.89543 4.5 6 5.39543 6 6.5C6 7.60457 6.89543 8.5 8 8.5Z" fill="#FF6B6B"/>
+                                <path d="M8 0C4.1 0 1 3.1 1 7C1 10.9 8 16 8 16C8 16 15 10.9 15 7C15 3.1 11.9 0 8 0ZM8 10.5C5.5 10.5 3.5 8.5 3.5 6C3.5 3.5 5.5 1.5 8 1.5C10.5 1.5 12.5 3.5 12.5 6C12.5 8.5 10.5 10.5 8 10.5Z" fill="#FF6B6B"/>
+                            </svg>
+                            <span>Agra, Uttar Pradesh</span>
+                        </div>
+                        <p>The iconic white marble mausoleum, one of the Seven Wonders of the World and a symbol of eternal love.</p>
+                        
+                        <div class="hotel-info">
+                            <h4>Recommended Stay:</h4>
+                            <p><strong>The Oberoi Amarvilas</strong> - Luxury hotel with uninterrupted views of the Taj Mahal from every room.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="blog" class="blog-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Cultural Insights & Stories</h2>
+            </div>
+            
+            <div class="blog-grid">
+                <!-- Blog Card 1 -->
+                <div class="blog-card">
+                    <div class="blog-img">
+                        <img src="https://images.unsplash.com/photo-1519817650390-64a93db51149?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Indian Spices">
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-date">June 15, 2023</div>
+                        <h3>The Spice Trail: How Indian Spices Shaped World History</h3>
+                        <p class="blog-excerpt">Discover how India's spice trade influenced global exploration, economies, and cuisines throughout history.</p>
+                        <a href="#" class="read-more">Read More 
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M8 0L6.59 1.41L12.17 7H0V9H12.17L6.59 14.59L8 16L16 8L8 0Z" fill="#FF6B6B"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Blog Card 2 -->
+                <div class="blog-card">
+                    <div class="blog-img">
+                        <img src="https://images.unsplash.com/photo-1600188769045-bc60256d5784?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Indian Wedding">
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-date">May 28, 2023</div>
+                        <h3>Indian Weddings: A Colorful Tapestry of Traditions</h3>
+                        <p class="blog-excerpt">Explore the vibrant rituals, elaborate ceremonies, and regional variations of Indian wedding traditions.</p>
+                        <a href="#" class="read-more">Read More 
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M8 0L6.59 1.41L12.17 7H0V9H12.17L6.59 14.59L8 16L16 8L8 0Z" fill="#FF6B6B"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Blog Card 3 -->
+                <div class="blog-card">
+                    <div class="blog-img">
+                        <img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Indian Textiles">
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-date">April 12, 2023</div>
+                        <h3>Weaving Stories: The Art of Indian Textiles</h3>
+                        <p class="blog-excerpt">From Banarasi silks to Pashmina shawls, discover the rich heritage of India's textile traditions.</p>
+                        <a href="#" class="read-more">Read More 
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M8 0L6.59 1.41L12.17 7H0V9H12.17L6.59 14.59L8 16L16 8L8 0Z" fill="#FF6B6B"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Indian Delights</h3>
+                    <p>Celebrating India's rich culinary heritage and cultural diversity through authentic recipes, travel guides, and cultural insights.</p>
+                    <div class="social-links">
+                        <a href="#"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M22 12C22 6.477 17.523 2 12 2C6.477 2 2 6.477 2 12C2 16.991 5.657 21.128 10.438 21.878V14.891H7.898V12H10.438V9.797C10.438 7.291 11.93 5.907 14.215 5.907C15.309 5.907 16.453 6.102 16.453 6.102V8.562H15.193C13.95 8.562 13.563 9.333 13.563 10.124V12H16.336L15.893 14.891H13.563V21.878C18.343 21.128 22 16.991 22 12Z" fill="white"/></svg></a>
+                        <a href="#"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.163C15.204 2.163 15.584 2.175 16.85 2.233C18.021 2.287 18.68 2.501 19.076 2.672C19.621 2.908 20.011 3.209 20.356 3.644C20.791 3.989 21.092 4.379 21.328 4.924C21.499 5.32 21.713 5.979 21.767 7.15C21.825 8.416 21.837 8.796 21.837 12C21.837 15.204 21.825 15.584 21.767 16.85C21.713 18.021 21.499 18.68 21.328 19.076C21.092 19.621 20.791 20.011 20.356 20.356C20.011 20.791 19.621 21.092 19.076 21.328C18.68 21.499 18.021 21.713 16.85 21.767C15.584 21.825 15.204 21.837 12 21.837C8.796 21.837 8.416 21.825 7.15 21.767C5.979 21.713 5.32 21.499 4.924 21.328C4.379 21.092 3.989 20.791 3.644 20.356C3.209 20.011 2.908 19.621 2.672 19.076C2.501 18.68 2.287 18.021 2.233 16.85C2.175 15.584 2.163 15.204 2.163 12C2.163 8.796 2.175 8.416 2.233 7.15C2.287 5.979 2.501 5.32 2.672 4.924C2.908 4.379 3.209 3.989 3.644 3.644C3.989 3.209 4.379 2.908 4.924 2.672C5.32 2.501 5.979 2.287 7.15 2.233C8.416 2.175 8.796 2.163 12 2.163ZM12 0C8.741 0 8.333 0.013 7.053 0.072C5.775 0.131 4.902 0.351 4.141 0.671C3.349 1.005 2.7 1.445 2.052 2.052C1.445 2.7 1.005 3.349 0.671 4.141C0.351 4.902 0.131 5.775 0.072 7.053C0.013 8.333 0 8.741 0 12C0 15.259 0.013 15.667 0.072 16.947C0.131 18.225 0.351 19.098 0.671 19.859C1.005 20.651 1.445 21.3 2.052 21.948C2.7 22.555 3.349 22.995 4.141 23.329C4.902 23.649 5.775 23.869 7.053 23.928C8.333 23.987 8.741 24 12 24C15.259 24 15.667 23.987 16.947 23.928C18.225 23.869 19.098 23.649 19.859 23.329C20.651 22.995 21.3 22.555 21.948 21.948C22.555 21.3 22.995 20.651 23.329 19.859C23.649 19.098 23.869 18.225 23.928 16.947C23.987 15.667 24 15.259 24 12C24 8.741 23.987 8.333 23.928 7.053C23.869 5.775 23.649 4.902 23.329 4.141C22.995 3.349 22.555 2.7 21.948 2.052C21.3 1.445 20.651 1.005 19.859 0.671C19.098 0.351 18.225 0.131 16.947 0.072C15.667 0.013 15.259 0 12 0ZM12 5.837C8.597 5.837 5.837 8.597 5.837 12C5.837 15.403 8.597 18.163 12 18.163C15.403 18.163 18.163 15.403 18.163 12C18.163 8.597 15.403 5.837 12 5.837ZM12 16C9.791 16 8 14.209 8 12C8 9.791 9.791 8 12 8C14.209 8 16 9.791 16 12C16 14.209 14.209 16 12 16ZM18.406 5.594C18.406 6.293 17.855 6.844 17.156 6.844C16.457 6.844 15.906 6.293 15.906 5.594C15.906 4.895 16.457 4.344 17.156 4.344C17.855 4.344 18.406 4.895 18.406 5.594Z" fill="white"/></svg></a>
+                        <a href="#"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M23.953 4.57C23.225 4.922 22.425 5.162 21.58 5.27C22.44 4.758 23.097 3.91 23.397 2.908C22.59 3.382 21.698 3.73 20.75 3.917C19.988 3.103 18.925 2.625 17.75 2.625C15.423 2.625 13.537 4.51 13.537 6.837C13.537 7.167 13.574 7.488 13.647 7.795C9.44 7.59 5.816 5.555 3.47 2.47C3.107 3.115 2.89 3.85 2.89 4.633C2.89 6.115 3.63 7.435 4.77 8.162C4.08 8.15 3.44 7.953 2.885 7.625V7.67C2.885 9.74 4.343 11.465 6.29 11.865C5.94 11.96 5.57 12.01 5.19 12.01C4.92 12.01 4.66 11.985 4.41 11.935C4.93 13.635 6.5 14.89 8.38 14.925C6.915 16.08 5.04 16.755 3 16.755C2.66 16.755 2.325 16.735 2 16.695C3.9 17.925 6.16 18.625 8.58 18.625C17.75 18.625 22.62 12.105 22.62 6.315C22.62 6.105 22.615 5.895 22.605 5.69C23.425 5.115 24.13 4.395 23.953 4.57Z" fill="white"/></svg></a>
+                        <a href="#"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 0C8.74 0 8.333 0.014 7.053 0.072C2.695 0.272 0.273 2.69 0.073 7.052C0.014 8.333 0 8.74 0 12C0 15.26 0.014 15.666 0.072 16.947C0.272 21.306 2.69 23.728 7.052 23.928C8.333 23.986 8.74 24 12 24C15.26 24 15.667 23.986 16.947 23.928C21.302 23.728 23.73 21.31 23.927 16.948C23.986 15.667 24 15.26 24 12C24 8.74 23.986 8.333 23.928 7.053C23.728 2.694 21.31 0.273 16.948 0.073C15.667 0.014 15.26 0 12 0ZM12 2.16C15.203 2.16 15.586 2.173 16.853 2.23C20.183 2.409 21.592 3.817 21.77 7.147C21.827 8.414 21.84 8.797 21.84 12C21.84 15.203 21.827 15.586 21.77 16.853C21.591 20.183 20.183 21.591 16.853 21.77C15.586 21.827 15.203 21.84 12 21.84C8.797 21.84 8.414 21.827 7.147 21.77C3.817 21.591 2.409 20.183 2.23 16.853C2.173 15.586 2.16 15.203 2.16 12C2.16 8.797 2.173 8.414 2.23 7.147C2.409 3.817 3.817 2.409 7.147 2.23C8.414 2.173 8.797 2.16 12 2.16ZM5.904 12C5.904 15.585 8.833 18.48 12 18.48C15.167 18.48 18.096 15.585 18.096 12C18.096 8.415 15.167 5.52 12 5.52C8.833 5.52 5.904 8.415 5.904 12ZM12 7.68C13.992 7.68 15.6 9.288 15.6 11.28C15.6 13.272 13.992 14.88 12 14.88C10.008 14.88 8.4 13.272 8.4 11.28C8.4 9.288 10.008 7.68 12 7.68ZM19.344 5.28C19.344 5.904 18.864 6.384 18.24 6.384C17.616 6.384 17.136 5.904 17.136 5.28C17.136 4.656 17.616 4.176 18.24 4.176C18.864 4.176 19.344 4.656 19.344 5.28Z" fill="white"/></svg></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">Recipes</a></li>
+                        <li><a href="#">Travel Guides</a></li>
+                        <li><a href="#">Cultural Stories</a></li>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Popular Recipes</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Butter Chicken</a></li>
+                        <li><a href="#">Biryani</a></li>
+                        <li><a href="#">Masala Dosa</a></li>
+                        <li><a href="#">Rogan Josh</a></li>
+                        <li><a href="#">Dhokla</a></li>
+                        <li><a href="#">Chole Bhature</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Contact Us</h3>
+                    <p>123 Spice Lane, Mumbai</p>
+                    <p>Maharashtra, India 400001</p>
+                    <p>Email: info@indiandelights.com</p>
+                    <p>Phone: +91 98765 43210</p>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 Indian Delights. All Rights Reserved. | Designed with ❤️ for India's Culinary Heritage</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
